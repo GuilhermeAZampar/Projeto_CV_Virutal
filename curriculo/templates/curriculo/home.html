@@ -1,0 +1,201 @@
+{% extends "curriculo/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-imagem">
+        <img
+            src="{% static 'curriculo/img/foto_gui_proje.jpg' %}"
+            alt="Foto de Guilherme Alves Zampar"
+            class="foto-perfil"
+        >
+    </div>
+
+    <div class="hero-texto">
+
+        <p class="terminal">
+            $ whoami
+        </p>
+
+        <h1>
+            Guilherme Alves Zampar
+        </h1>
+
+        <h2>
+            Desenvolvedor Back-end Python | Full Stack
+        </h2>
+
+        <p class="descricao">
+            Desenvolvedor Back-end Python e Full Stack focado na construção
+            de APIs REST, arquitetura de aplicações e boas práticas de
+            desenvolvimento.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="contato">
+
+    <p class="terminal">
+        $ contact --info
+    </p>
+
+    <h2>CONTATO</h2>
+
+    <div class="links-contato">
+
+        <a href="https://www.linkedin.com/in/guilherme-zampar-dev/" target="_blank">
+            &gt; LinkedIn
+        </a>
+
+        <a href="https://github.com/GuilhermeAZampar" target="_blank">
+            &gt; GitHub
+        </a>
+
+        <a href="mailto:guilhermezampar90@gmail.com">
+            &gt; Email
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="stack">
+
+    <p class="terminal">
+        $ skills --list
+    </p>
+
+    <h2>TECNOLOGIAS</h2>
+
+    <ul>
+        <li>Python</li>
+        <li>Django</li>
+        <li>FastAPI</li>
+        <li>Flask</li>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Next.js</li>
+        <li>Vue.js</li>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>Tailwind CSS</li>
+        <li>Bootstrap</li>
+        <li>PostgreSQL</li>
+        <li>Oracle Database</li>
+        <li>SQL</li>
+        <li>MongoDB</li>
+        <li>Redis</li>
+        <li>SQLAlchemy</li>
+        <li>Pytest</li>
+        <li>Docker</li>
+        <li>Celery</li>
+        <li>Kafka</li>
+        <li>Git / GitHub</li>
+        <li>CI/CD</li>
+        <li>ELK Stack</li>
+    </ul>
+
+</section>
+
+
+<section class="status">
+
+    <p class="terminal">
+        $ status
+    </p>
+
+    <div class="status-sistema">
+
+        <h2>STATUS DO SISTEMA</h2>
+
+        <div class="linha-status">
+            <span>Usuário</span>
+            <span>Guilherme Alves Zampar</span>
+        </div>
+
+        <div class="linha-status">
+            <span>Cargo</span>
+            <span>Desenvolvedor Back-end | Full Stack</span>
+        </div>
+
+        <div class="linha-status">
+            <span>Localização</span>
+            <span>Mauá • SP</span>
+        </div>
+
+        <div class="linha-status">
+            <span>Disponibilidade</span>
+            <span>Aberto a oportunidades</span>
+        </div>
+
+        <div class="linha-status">
+            <span>Foco</span>
+            <span>Desenvolvedor Back-end Python | Full Stack</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="projetos">
+
+    <p class="terminal">
+        $ projects --list
+    </p>
+
+    <h2 class="titulo-projetos">
+        MEUS PROJETOS
+    </h2>
+
+    {% for projeto in projetos %}
+
+    <article class="projeto-card">
+
+        <h3>
+            {{ projeto.nome }}
+        </h3>
+
+        <p>
+            {{ projeto.descricao }}
+        </p>
+
+        <p>
+            <strong>Tecnologias:</strong>
+            {{ projeto.tecnologia }}
+        </p>
+
+        <div class="acoes-projeto">
+
+            <a href="{% url 'detalhe' projeto.id %}">
+                &gt; Ver Projeto
+            </a>
+
+            {% if user.is_authenticated %}
+
+            <a href="{% url 'editar_projeto' projeto.id %}">
+                &gt; Editar
+            </a>
+
+            <a href="{% url 'excluir_projeto' projeto.id %}">
+                &gt; Excluir
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </article>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

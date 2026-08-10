@@ -1,0 +1,15 @@
+{% extends 'curriculo/base.html' %}
+{% block content %}
+
+<h2>Deseja mesmo excluir o projeto {{projeto.nome}}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Excluir</button>
+
+</form>
+<a href="{% url 'home' %}">Cancelar</a>
+
+
+
+{% endblock %}
